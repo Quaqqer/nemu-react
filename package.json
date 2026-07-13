@@ -1,5 +1,5 @@
 {
-  "name": "nemu-react",
+  "name": "@quaqqer/nemu-react",
   "version": "0.1.0",
   "description": "A react component for the Nemu emulator",
   "keywords": [
@@ -11,14 +11,37 @@
   "bugs": {
     "url": "https://github.com/Quaqqer/nemu-component/issues"
   },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "./dist",
+    "./README.md",
+    "./LICENSE.md"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Quaqqer/nemu-component.git"
   },
   "author": "Emanuel Särnhammar <emanuel@quaqqer.com>",
   "type": "module",
-  "main": "index.ts",
   "dependencies": {
     "@quaqqer/nemu-wasm": "^0.1.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.3",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "react-dom": "^19.2.7",
+    "vite": "^8.1.4",
+    "typescript": "^7.0.2",
+    "vite-plugin-wasm": "^3.6.0"
+  },
+  "scripts": {
+    "dev": "cd preview && vite dev",
+    "build": "rm -rf dist && tsc && cp ./src/nemu.css dist/",
+    "prepare": "npm run build"
   }
 }
