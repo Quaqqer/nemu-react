@@ -1,15 +1,15 @@
 {
   "name": "@quaqqer/nemu-react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A react component for the Nemu emulator",
   "keywords": [
     "nemu",
     "emulator",
     "react"
   ],
-  "homepage": "https://github.com/Quaqqer/nemu-component#readme",
+  "homepage": "https://github.com/Quaqqer/nemu-react#readme",
   "bugs": {
-    "url": "https://github.com/Quaqqer/nemu-component/issues"
+    "url": "https://github.com/Quaqqer/nemu-react/issues"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,7 +20,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Quaqqer/nemu-component.git"
+    "url": "git+https://github.com/Quaqqer/nemu-react.git"
   },
   "author": "Emanuel Särnhammar <emanuel@quaqqer.com>",
   "type": "module",
