@@ -1,7 +1,9 @@
 import "./nemu.css";
 
-import { type FC, useRef, useState } from "react";
+import { type FC, useState } from "react";
+import { ControlBar } from "./components/ControlBar.tsx";
 import { DEFAULT_KEYMAP, type KeyMap } from "./keymap.ts";
+import { useSettings } from "./settings.ts";
 import { useNemu } from "./useNemu.ts";
 
 export interface NemuProps {
@@ -9,72 +11,51 @@ export interface NemuProps {
   width?: number;
   height?: number;
   rom?: Uint8Array;
+  allowLoadRom?: boolean;
 }
 
 const Component: FC<NemuProps> = ({
   keymap: keyMap = DEFAULT_KEYMAP,
-  width = 256 * 2,
-  height = 240 * 2,
+  width,
+  height,
   rom: initialRom,
+  allowLoadRom = true,
 }) => {
-  const romInputRef = useRef<HTMLInputElement>(null);
+  const fixedDimensions = width !== undefined || height !== undefined;
+  width ??= 256 * 2;
+  height ??= 240 * 2;
+
   const [canvasRef, setCanvasRef] = useState<HTMLCanvasElement | null>(null);
   const [rom, setRom] = useState<Uint8Array | undefined>(initialRom);
 
   const { paused, setPaused } = useNemu(rom, canvasRef, keyMap);
+  const { settings, updateSetting } = useSettings();
 
   return (
-    <div style={{ width }}>
+    <div className="nemu" style={{ width }}>
       <div style={{ width, height }}>
-        <input
-          ref={romInputRef}
-          hidden
-          type="file"
-          accept=".nes"
-          onChange={async (ev) => {
-            const file = ev.target.files?.[0];
-            if (file !== undefined) {
-              setRom(new Uint8Array(await file.arrayBuffer()));
-            }
-          }}
-        />
-
         <canvas
           className="nemu-canvas"
           ref={setCanvasRef}
           tabIndex={0}
           width={256}
           height={240}
+          style={{
+            imageRendering: settings.pixelated ? "pixelated" : undefined,
+          }}
         />
       </div>
 
-      <div className="nemu-control-bar">
-        <button
-          type="button"
-          className="nemu-control-button"
-          onClick={() => setPaused(!paused)}
-        >
-          {paused ? "Resume" : "Pause"}
-        </button>
-
-        <button
-          type="button"
-          className="nemu-control-button"
-          onClick={() => romInputRef.current?.click()}
-        >
-          Load rom
-        </button>
-        <button
-          type="button"
-          className="nemu-control-button"
-          onClick={() => {
-            canvasRef?.requestFullscreen();
-            canvasRef?.focus();
-          }}
-        >
-          Fullscreen
-        </button>
-      </div>
+      <ControlBar
+        paused={paused}
+        setPaused={setPaused}
+        canvasRef={canvasRef}
+        allowLoadRom={allowLoadRom}
+        setRom={setRom}
+        fixedDimensions={false}
+        settings={settings}
+        updateSetting={updateSetting}
+      />
     </div>
   );
 };

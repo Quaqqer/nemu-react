@@ -1,3 +1,9 @@
+.nemu {
+  color: white;
+  background: black;
+  user-select: none;
+}
+
 .nemu-canvas {
   background: black;
   outline: 0;
@@ -14,6 +20,31 @@
 }
 
 .nemu-control-button {
-  background: black;
   color: white;
+  background: black;
+}
+
+.nemu-settings-button {
+  background: black;
+}
+
+.nemu-settings-button {
+  position: relative;
+}
+
+.nemu-settings-group {
+  display: none;
+
+  background: black;
+  position: absolute;
+}
+
+.nemu-settings-button:hover .nemu-settings-group {
+  display: block;
+}
+
+.nemu-setting-with-label {
+  display: flex;
+  flex-direction: row;
+  gap: 0.3rem;
 }
