@@ -1,4 +1,9 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.5.3/schema.json",
-  "formatter": { "indentStyle": "space" }
+  "formatter": { "indentStyle": "space" },
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  }
 }
