@@ -25,4 +25,4 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Type check
-        run: ./node_modules/.bin/tsc
+        run: ./node_modules/.bin/tsc --noEmit
