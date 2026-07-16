@@ -21,7 +21,7 @@ const Component: FC<NemuProps> = ({
   rom: initialRom,
   allowLoadRom = true,
 }) => {
-  const fixedDimensions = width !== undefined || height !== undefined;
+  const _fixedDimensions = width !== undefined || height !== undefined;
   width ??= 256 * 2;
   height ??= 240 * 2;
 

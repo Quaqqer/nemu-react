@@ -1,4 +1,4 @@
-import { type FC, useCallback } from "react";
+import type { FC } from "react";
 import type { Settings, UpdateSetting } from "../settings.ts";
 import { useCreateSettingsCheckbox } from "./SettingsCheckbox.tsx";
 

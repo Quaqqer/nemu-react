@@ -22,7 +22,7 @@ export const ControlBar: FC<ControlBarProps> = ({
   canvasRef,
   allowLoadRom,
   setRom,
-  fixedDimensions,
+  fixedDimensions: _,
   settings,
   updateSetting,
 }) => {
